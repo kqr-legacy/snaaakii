@@ -1,0 +1,11 @@
+project Snake is
+   for Main use ("main.adb");
+   for Object_Dir use "build";
+
+   package Linker is
+      for Default_Switches ("Ada") use ("-lncurses");
+   end Linker;
+   package Builder is
+      for Executable ("main.adb") use "snake";
+   end Builder;
+end Snake;
