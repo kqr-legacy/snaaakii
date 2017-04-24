@@ -17,11 +17,11 @@ is
       Initialised := True;
    end Init;
 
-   procedure Draw (Symbol : Character; Position : Game.Coordinate) is
+   procedure Draw (Symbol : Character; X : Longitude; Y : Latitude) is
    begin
       Curses_H.Mvaddch
-        (Integer (Position.Y),
-         Integer (Position.X),
+        (Integer (Y),
+         Integer (X),
          Symbol);
    end Draw;
    

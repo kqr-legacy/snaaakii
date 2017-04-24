@@ -16,30 +16,14 @@ an Entity–Component–System architecture, and it's a great place to practise
 
 The general hierarchy of the code is like this:
 
-
-├── Game
-│   ├── Game.Logic (rules?)
-│   ├── Game.Snake
-
 Main
-├── Game
-├── game-food.adb
-├── game-food.ads
-├── game-logic.adb
-├── game-logic.ads
-├── game-random_coordinate.adb
-├── game-random_coordinate.ads
-├── game-round.adb
-├── game-round.ads
-├── game-snake.ads
-├── game-ui.adb
-├── game-ui.ads
-├── game-ui-ncurses.adb
-├── game-ui-ncurses.ads
-├── game-ui-ncurses-curses_h.adb
-├── game-ui-ncurses-curses_h.ads
-├── game-ui-rendering.adb
-├── game-ui-rendering.ads
-├── main.adb
-├── README
-└── snake.gpr
+└── Game                                  ; Room size, generally useful constants
+    ├── Game.Components                   ; Definitions of lots of components
+    │   └── Game.Components.Collection    ; "Heterogeneous" collections of components
+    ├── Game.Entities                     ; Helpers for making entities out of component collections
+    ├── Game.Systems                      ; Methods that update entities by their components
+    ├── Game.Round                        ; Step function and game state
+    └── Game.UI                           ; Collection of input and output modules
+        └── Game.UI.NCurses               ; NCurses specific backend
+            └── Game.UI.NCurses.Curses_H  ; Very thin binding to the C library
+            

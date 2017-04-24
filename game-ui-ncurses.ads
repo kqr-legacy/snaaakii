@@ -16,7 +16,7 @@ is
       Post => Is_Started,
       Global => (In_Out => User_Terminal);
    
-   procedure Draw (Symbol : Character; Position : Game.Coordinate) with
+   procedure Draw (Symbol : Character; X : Longitude; Y : Latitude) with
       Pre => Is_Started,
       Post => Is_Started,
       Global => (In_Out => User_Terminal);

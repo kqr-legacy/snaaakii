@@ -1,20 +1,15 @@
-with Game.Snake;
+with Game.Entities;
 
 package Game.Round with SPARK_Mode is
-   Snake : Game.Snake.Object;
+
+   Entities : Game.Entities.Entity_Array (Entity_Index);
 
    procedure Start with
-      Post => Valid_State,
-      Global => (Output => Snake),
-      Depends => (Snake => null);
-   
-   procedure Update with
-      Pre => Valid_State,
-      Global => (In_Out => Snake),
-      Depends => (Snake =>+ null);
-   
-   function Valid_State return Boolean with
-      Global => (Input => Snake),
-      Depends => (Valid_State'Result => Snake);
+      Global => (Output => Entities),
+      Depends => (Entities => null);
+
+--   procedure Step with
+--      Global => (In_Out => Game_State),
+--      Depends => (Game_State =>+ null);
 
 end Game.Round;

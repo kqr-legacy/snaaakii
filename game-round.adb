@@ -1,24 +1,18 @@
-with Game.Logic;
+with Game.Components;
 
 package body Game.Round with SPARK_Mode is
-   procedure Start is
-      Centre : Coordinate :=
-        (Longitude'First + (Longitude'Last - Longitude'First)/2,
-         Latitude'First + (Latitude'Last - Latitude'First)/2);
-   begin
-      Snake.Position := Centre;
-      Snake.Direction := North;
-      Snake.Tail := (others => (1,1));
-      Snake.Length := 1;
---   Game.Food.Respawn;
-   end Start;
-   
-   procedure Update is
-   begin
-      Game.Logic.Step (Snake);
-   end Update;
 
-   function Valid_State return Boolean is
-     (Snake.Valid);
+   procedure Start is
+      Snake : Game.Entities.Entity;
+   begin
+      Snake.Components.Init;
+      Snake.Add_Component (Game.Components.Position'(3, 4));
+      Entities (1) := Snake;
+   end Start;
+
+   procedure Step is
+   begin
+      null;
+   end Step;
 
 end Game.Round;
