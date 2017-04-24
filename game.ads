@@ -1,8 +1,5 @@
-with Curses_H;
-
 package Game with SPARK_Mode is
-   type Absolute_Direction is (North, East, South, West);
-   type Relative_Direction is (Left, Right);
+   type Absolute_Direction is (North, East, South, West, None);
 
    type Longitude is new Integer range 1 .. 18;
    type Latitude is new Integer range 1 .. 14;
@@ -12,8 +9,19 @@ package Game with SPARK_Mode is
       Y : Latitude;
    end record;
    
-   procedure Render with
-      Pre => Curses_H.User_Terminal,
-      Post => Curses_H.User_Terminal,
-      Global => Curses_H.User_Terminal;
+   type Object is tagged record
+      Position : Coordinate;
+      Direction : Absolute_Direction;
+   end record;
+      
+   function Ahead_In_Bounds (Self : Object) return Boolean is
+     (case Self.Direction is
+         when North => Self.Position.Y > Latitude'First,
+         when East => Self.Position.X < Longitude'Last,
+         when South => Self.Position.Y < Latitude'Last,
+         when West => Self.Position.X > Longitude'First,
+         when None => True);
+   
+   function Valid (Self : Object) return Boolean is
+     (Self.Ahead_In_Bounds);
 end Game;

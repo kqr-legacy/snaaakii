@@ -6,7 +6,7 @@ with Game.Round;
 with Game.UI;
 --with Game.UI.Rendering;
 
-procedure Main with SPARK_Mode is
+procedure` Main with SPARK_Mode is
    pragma Warnings (GNATProve, Off, "initialization");
    Next_Frame : Ada.Real_Time.Time := Ada.Real_Time.Clock;
    pragma Warnings (GNATProve, On, "initialization");

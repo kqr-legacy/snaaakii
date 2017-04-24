@@ -1,10 +1,7 @@
-with Game;
-
-package NCurses with
+private package Game.UI.NCurses with
    SPARK_Mode,
-   Abstract_State => User_Terminal,
-   Initializes => User_Terminal,
-   Initial_Condition => not Is_Started
+   Abstract_State => (User_Terminal with Part_Of => UI),
+   Initializes => User_Terminal
 is
    type Key_Press is (Left, Right, Up, Down, Q, None);
 
@@ -64,4 +61,4 @@ private
          when others => None)
    with
       Pre => Valid_Key_Press (C_Key);
-end NCurses;
+end Game.UI.NCurses;

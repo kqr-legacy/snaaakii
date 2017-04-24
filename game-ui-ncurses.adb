@@ -1,6 +1,6 @@
-with NCurses.Curses_H;
+with Game.UI.NCurses.Curses_H;
 
-package body NCurses with
+package body Game.UI.NCurses with
    SPARK_Mode,
    Refined_State => (User_Terminal => (Initialised, Curses_H.Terminal_Effects))
 is
@@ -55,4 +55,4 @@ is
       Curses_H.Endwin;
       Initialised := False;
    end Reset;
-end NCurses;
+end Game.UI.NCurses;
