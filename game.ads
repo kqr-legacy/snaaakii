@@ -5,7 +5,6 @@ package Game with SPARK_Mode is
    Longitude_Span : constant Longitude := Longitude'Last - Longitude'First;
    Latitude_Span : constant Latitude := Latitude'Last - Latitude'First;
 
-
    --  Controls maximum number of components per entity
    type Component_Index is new Positive range 1 .. 20;
 

@@ -16,12 +16,12 @@ procedure Main with SPARK_Mode is
    Entities : Game.Entities.Entity_Array (Game.Entity_Index);
 begin
    NCurses.Init;
---   Entities (1).Components.Init;
---   Entities (1).Add_Component (Game.Components.Position'(3, 4));
---   Entities (1).Add_Component (Game.Components.Appearance'('s', 1.0));
+   Entities (1) := Game.Entities.Snake;
    loop
       NCurses.Clear;
---      Game.Systems.Render (Entities (1));
+      for EI in Game.Entity_Index loop
+         Game.Systems.Render (Entities (EI));
+      end loop;
       NCurses.Draw ('X', 2, 2);
       NCurses.Refresh;
 

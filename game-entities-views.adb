@@ -7,7 +7,7 @@ package body Game.Entities.Views with SPARK_Mode is
      (Self : Entity)
       return Natural
    is
-      Count : Natural;
+      Count : Natural := 0;
    begin
       for CI in Component_Index loop
          if Self.Components.Get (CI) in Component_Type'Class then
@@ -31,18 +31,21 @@ package body Game.Entities.Views with SPARK_Mode is
       return Count;
    end Empty_Slots;
 
-   procedure Add
+   procedure Set
      (Self : in out Entity;
       Component : Component_Type)
-   is
-   begin
-      for CI in Component_Index loop
-         if Self.Components.Get (CI) in Game.Components.No_Component'Class then
-            Self.Components.Set (CI, Component);
-            return;
-         end if;
-      end loop;
-   end Add;
+   is begin
+      if Count (Self) = 0 then
+         for CI in Component_Index loop
+            if Self.Components.Get (CI) in Game.Components.No_Component'Class then
+               Self.Components.Set (CI, Component);
+               return;
+            end if;
+         end loop;
+      else
+         Modify (Self, Component);
+      end if;
+   end Set;
 
    procedure Delete
      (Self : in out Entity)
@@ -60,8 +63,7 @@ package body Game.Entities.Views with SPARK_Mode is
    procedure Modify
      (Self : in out Entity;
       Component : Component_Type)
-   is
-   begin
+   is begin
       for CI in Component_Index loop
          pragma Loop_Invariant (Count (Self) = 1);
          if Self.Components.Get (CI) in Component_Type'Class then
@@ -73,13 +75,13 @@ package body Game.Entities.Views with SPARK_Mode is
    function Get
      (Self : Entity)
       return Component_Type
-   is
-   begin
+   is begin
       for CI in Component_Index loop
          if Self.Components.Get (CI) in Component_Type'Class then
             return Component_Type (Self.Components.Get (CI));
          end if;
       end loop;
+      return Default_Component;
    end Get;
 
 end Game.Entities.Views;

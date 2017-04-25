@@ -3,8 +3,14 @@ with Game.Entities.Views;
 pragma Elaborate_All (Game.Entities.Views);
 
 package body Game.Systems with SPARK_Mode is
-   package Position is new Game.Entities.Views (Game.Components.Position);
-   package Appearance is new Game.Entities.Views (Game.Components.Appearance);
+   package Position is
+      new Game.Entities.Views
+        (Game.Components.Position,
+         Game.Components.Position'(1,1));
+   package Appearance is
+      new Game.Entities.Views
+        (Game.Components.Appearance,
+         Game.Components.Appearance'(' ', 0.0));
 
    procedure Render (Entity : Game.Entities.Entity) is
    begin
