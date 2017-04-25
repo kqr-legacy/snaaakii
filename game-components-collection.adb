@@ -18,14 +18,4 @@ package body Game.Components.Collection with SPARK_Mode => Off is
       Self.Contents (CI) := new Component'Class'(New_Component);
    end Set;
 
-   function Free_Slots (Self : Storage) return Natural is
-      Count : Natural := 0;
-   begin
-      for CI in Component_Index loop
-         if Self.Free_Slot (CI) then
-            Count := Count + 1;
-         end if;
-      end loop;
-      return Count;
-   end Free_Slots;
 end Game.Components.Collection;

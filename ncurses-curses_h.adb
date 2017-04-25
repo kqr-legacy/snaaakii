@@ -1,4 +1,4 @@
-package body Game.UI.NCurses.Curses_H with
+package body NCurses.Curses_H with
    SPARK_Mode => Off
 is
    procedure Initscr (Window : out Window_Ptr) is
@@ -109,4 +109,4 @@ is
       Status := C_Endwin;
       Initialised := False;
    end Endwin;
-end Game.UI.NCurses.Curses_H;
+end NCurses.Curses_H;

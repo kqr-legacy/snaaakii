@@ -1,4 +1,4 @@
-private package Game.UI.NCurses.Curses_H with
+private package NCurses.Curses_H with
    SPARK_Mode,
    Abstract_State => (Terminal_Effects with Part_Of => User_Terminal),
    Initializes => Terminal_Effects
@@ -39,4 +39,4 @@ private
    pragma SPARK_Mode (Off);
    type Window_Null is null record;
    type Window_Ptr is access Window_Null;
-end Game.UI.NCurses.Curses_H;
+end NCurses.Curses_H;

@@ -1,6 +1,6 @@
-with Game.UI.NCurses.Curses_H;
+with NCurses.Curses_H;
 
-package body Game.UI.NCurses with
+package body NCurses with
    SPARK_Mode,
    Refined_State => (User_Terminal => (Initialised, Curses_H.Terminal_Effects))
 is
@@ -17,7 +17,7 @@ is
       Initialised := True;
    end Init;
 
-   procedure Draw (Symbol : Character; X : Longitude; Y : Latitude) is
+   procedure Draw (Symbol : Character; X : Natural; Y : Natural) is
    begin
       Curses_H.Mvaddch
         (Integer (Y),
@@ -55,4 +55,4 @@ is
       Curses_H.Endwin;
       Initialised := False;
    end Reset;
-end Game.UI.NCurses;
+end NCurses;

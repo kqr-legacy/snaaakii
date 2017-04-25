@@ -1,6 +1,6 @@
-private package Game.UI.NCurses with
+package NCurses with
    SPARK_Mode,
-   Abstract_State => (User_Terminal with Part_Of => UI),
+   Abstract_State => User_Terminal,
    Initializes => User_Terminal
 is
    type Key_Press is (Left, Right, Up, Down, Q, None);
@@ -16,7 +16,7 @@ is
       Post => Is_Started,
       Global => (In_Out => User_Terminal);
    
-   procedure Draw (Symbol : Character; X : Longitude; Y : Latitude) with
+   procedure Draw (Symbol : Character; X : Natural; Y : Natural) with
       Pre => Is_Started,
       Post => Is_Started,
       Global => (In_Out => User_Terminal);
@@ -61,4 +61,4 @@ private
          when others => None)
    with
       Pre => Valid_Key_Press (C_Key);
-end Game.UI.NCurses;
+end NCurses;
